@@ -1,14 +1,14 @@
 import axios from "axios";
 
 async function list() {
-  return await axios.get("/link");
+  return await axios.get("/links");
 }
 
 async function create(payload) {
-  return await axios.post("/link", payload);
+  return await axios.post("/links", payload);
 }
 
-linksApi = {
+const linksApi = {
   list,
   create,
 };

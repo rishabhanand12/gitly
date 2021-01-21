@@ -1,18 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Form from "./Form";
 import Table from "./Table";
 
 import linksApi from "../../apis/links";
 
 const Dashboard = (_props) => {
-  const [links, setLinks] = useState(null);
-  const [url, setUrl] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [links, setLinks] = React.useState(null);
+  const [url, setUrl] = React.useState("");
+  const [loading, setLoading] = React.useState(true);
 
   const fetchLinks = async () => {
     try {
       const response = await linksApi.list();
-      setLinks(response.data.links);
+      console.log(response.data);
+      setLinks(response.data);
       setLoading(false);
     } catch (err) {
       throw new Error(err);
@@ -28,7 +29,7 @@ const Dashboard = (_props) => {
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     fetchLinks();
   }, []);
 

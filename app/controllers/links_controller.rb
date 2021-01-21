@@ -4,7 +4,8 @@ class LinksController < ApplicationController
 
   def index
     links = Link.all
-    render status: ok, json: { data: links }
+    # debugger
+    render status: :ok, json: { data: links }
   end
 
   def create
@@ -12,13 +13,16 @@ class LinksController < ApplicationController
     if @link.new_record?
       @link.short_url = generate_short_url
       if @link.save
-        render status: ok, json: { link: @link }
+        render status: :ok, json: { link: @link }
       else
         render status: :unprocessable_entity, json: { error: @link.errors.messages }
       end
     else
-      render status: ok, json: { data: @link }
+      render status: :ok, json: { data: @link }
     end
+  end
+
+  def show
   end
 
   def update
@@ -32,7 +36,7 @@ class LinksController < ApplicationController
   private
 
   def link_params
-    params.require(:link).permit(:original_url, :pinned, click_count)
+    params.require(:link).permit(:original_url, :pinned, :click_count)
   end
 
   def load_link

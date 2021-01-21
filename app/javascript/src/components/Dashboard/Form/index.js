@@ -3,7 +3,7 @@ import React, { useState } from "react";
 const Form = ({ onSubmit, url, setUrl }) => {
   return (
     <>
-      <form onSubmit={onSubmit}>
+      <form className="url-form padding" onSubmit={onSubmit}>
         <input
           onChange={({ target: { value } }) => setUrl(value)}
           type="text"

@@ -1,0 +1,53 @@
+@import "./reset.scss";
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.padding {
+  padding: 1.2rem 0.8rem;
+}
+
+.url-form {
+  width: 100%;
+  input {
+    width: 85%;
+  }
+  input[type="submit"] {
+    width: 15%;
+    background-color: rgb(34, 55, 114);
+    color: #fff;
+    padding: 0.5rem 0.7rem;
+    border-style: none;
+    border-radius: 5px;
+    letter-spacing: 1.5px;
+    cursor: pointer;
+  }
+}
+
+.link-table {
+  width: 100%;
+  border-radius: 8px;
+  tr,
+  td {
+    padding: 0.5rem 0.7rem;
+    border: 1px solid #555;
+    text-align: center;
+  }
+  svg {
+    cursor: pointer;
+  }
+  a {
+    color: #000;
+    cursor: pointer;
+  }
+  .short-url {
+    cursor: pointer;
+  }
+}

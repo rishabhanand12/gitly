@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
   root to: 'home#index'
-  resources :link, only: [:index]
+  get '/:id', to: 'link#show'
+  resources :link, only: %i[index create update]
 end
-  

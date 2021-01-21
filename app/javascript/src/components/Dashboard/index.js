@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import linksApi from "api/links";
+import React, { useState, useEffect } from "react";
+import Form from "./Form";
+import Table from "./Table";
 
-const Dashboard = () => {
-  const [links, setLinks] = useState([]);
+import linksApi from "../../apis/links";
+
+const Dashboard = (_props) => {
+  const [links, setLinks] = useState(null);
+  const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchLinks();
-  });
 
   const fetchLinks = async () => {
     try {
@@ -19,16 +19,31 @@ const Dashboard = () => {
     }
   };
 
-  return (
-    <>
-      <div>
-        <form>{/* Input and submit button */}</form>
-      </div>
-      <div>
-        {/* <Table></Table> */}
-      </div>
-    </>
-  );
+  const handleSubmit = async () => {
+    event.preventDefault();
+    try {
+      await linksApi.create({ link: { original_url: url } });
+    } catch (err) {
+      throw new Error(err);
+    }
+  };
+
+  useEffect(() => {
+    fetchLinks();
+  }, []);
+
+  if (loading) {
+    return <h2>Loading...</h2>;
+  } else {
+    return (
+      <>
+        <div>
+          <Form onSubmit={handleSubmit} url={url} setUrl={setUrl} />
+        </div>
+        <div>{!links ? <p>No Links present</p> : <Table data={links} />}</div>
+      </>
+    );
+  }
 };
 
 export default Dashboard;
